@@ -1,0 +1,4 @@
+[submodule "submodules/CoreUI-React"]
+	path = submodules/CoreUI-React
+	url = https://github.com/hareeshbabu82ns/CoreUI-React.git
+	branch = master
