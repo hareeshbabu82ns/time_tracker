@@ -1,0 +1,42 @@
+# Root Query
+type Query {
+  # fetch all Clients
+  clients: [Client!]!
+  client(id:ID!):Client
+}
+
+# Mutations
+type Mutation {
+  createClient(name:String!,description:String):Client
+  removeClient(id:ID!):Int
+  updateClient(id:ID!,name:String!,description:String):Client
+
+}
+
+# Client holds url
+type Client {
+  id: ID!
+  name: String!
+  description: String
+}
+
+# Users who creates Links
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+input AuthProviderSignupData {
+    email: AUTH_PROVIDER_EMAIL
+}
+
+input AUTH_PROVIDER_EMAIL {
+    email: String!
+    password: String!
+}
+
+type SigninPayload {
+    token: String
+    user: User
+}

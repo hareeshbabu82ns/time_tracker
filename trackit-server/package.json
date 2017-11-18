@@ -1,0 +1,37 @@
+{
+  "name": "trackit-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "serve:dev": "nodemon server/app.js --exec babel-node",
+    "build": "babel -d ./build ./server -s --copy-files",
+    "build:clean": "rm -rf build",
+    "test":
+      "cross-env NODE_ENV=test mocha ./server/**/*.test.js --require babel-polyfill",
+    "test-watch": "nodemon --exec \"yarn test\""
+  },
+  "dependencies": {
+    "apollo-server-express": "^1.2.0",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-env": "^2.4.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "body-parser": "^1.18.2",
+    "cross-env": "^5.1.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "graphql": "^0.11.7",
+    "graphql-tools": "^2.7.2",
+    "moment": "^2.19.2",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.13.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "expect": "^21.2.1",
+    "mocha": "^4.0.1"
+  }
+}
