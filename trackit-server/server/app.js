@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const express = require("express");
+const cors = require("cors");
 
 // This package automatically parses JSON requests.
 const bodyParser = require("body-parser");
@@ -10,7 +11,7 @@ const schema = require("./gql");
 
 const mongoDB = require("./db/mongoose");
 
-require("dotenv").config({ path: ".env.test" });
+require("dotenv").config({ path: `.env.${process.env.NODE_ENV || "dev"}` });
 
 const PORT = process.env.PORT || 3000;
 
@@ -33,6 +34,7 @@ const start = async () => {
     //configure GraphQL server to work with Express
     app.use(
       "/graphql",
+      cors(), // to allow Cross Origin requests from Frontend Clients
       bodyParser.json(),
       // graphqlExpress({ context: { db }, schema }) //pass DB instance to GraphQL context
       graphqlExpress(buildGQLOptions)

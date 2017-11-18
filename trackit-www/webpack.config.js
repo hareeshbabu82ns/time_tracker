@@ -2,11 +2,9 @@ const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-process.env.NODE_ENV = process.env.NODE_ENV || "development";
+process.env.NODE_ENV = process.env.NODE_ENV || "dev";
 
-if (process.env.NODE_ENV === "development") {
-  require("dotenv").config({ path: ".env.development" });
-}
+require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
 
 module.exports = (env, argv) => {
   // const isProduciton = process.argv.find(arg => arg === "-p");
@@ -45,6 +43,10 @@ module.exports = (env, argv) => {
       //   Popper: ["popper.js", "default"]
       // }),
       new webpack.DefinePlugin({
+        "process.env.SERVER_URI": JSON.stringify(process.env.SERVER_URI),
+        "process.env.SERVER_GQL_PATH": JSON.stringify(
+          process.env.SERVER_GQL_PATH
+        ),
         "process.env.FIREBASE_API_KEY": JSON.stringify(
           process.env.FIREBASE_API_KEY
         ),
